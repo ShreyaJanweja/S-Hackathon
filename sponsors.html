@@ -4,79 +4,238 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>S-Hackathon | Sponsors</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
+
   <style>
     body {
-      background: linear-gradient(to bottom, #020617, #07102a, #120427);
+      background: linear-gradient(to bottom right, #020617, #0a1a2f);
       color: white;
       font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
     }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(255,255,255,0.05);
+    }
+
+    .glass:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(56,189,248,0.4);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .gold { color: #FFD700; }
+    .silver { color: #C0C0C0; }
+    .bronze { color: #CD7F32; }
+    .partner { color: #06b6d4; }
+
+    .grid-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cta-btn {
+      background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+      color: #000;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      transform: scale(1.05);
+    }
+    .blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at 30% 30%, #8b5cf6, #06b6d4);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+  transform: translate(-50%, -50%);
+  animation: blob-move 10s ease-in-out infinite alternate;
+}
+
+@keyframes blob-move {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-45%, -55%) scale(1.2); }
+}
+
+    
   </style>
 </head>
-<body class="bg-gradient-to-b from-[#020617] via-[#07102a] to-[#120427] text-white">
-  <canvas id="stars-canvas" class="fixed inset-0 -z-10"></canvas>
-  <!-- NAVBAR -->
-  <header class="fixed w-full z-40 top-0">
+
+<body>
+  <!-- Navbar -->
+  <header class="fixed w-full z-40 top-0 backdrop-blur-lg bg-black/40 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3">
-        <!-- simple logo: spark icon -->
         <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center shadow-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z" fill="white"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z" fill="white"/></svg>
         </div>
         <span class="text-lg md:text-xl font-semibold tracking-tight">S-Hackathon</span>
       </a>
 
       <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200/90">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="sponsors.html" class="nav-link">Sponsors</a>
-        <a href="workshops.html" class="nav-link">Workshops</a>
-        <a href="schedule.html" class="nav-link">Schedule</a>
-        <a href="humans.html" class="nav-link">Humans</a>
-        <a href="meetups.html" class="nav-link">Meetups</a>
-        <a href="swags.html" class="nav-link">Swags</a>
-        <a href="prizes.html" class="nav-link">Prizes</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="sponsors.html" class="text-[#06b6d4] font-semibold">Sponsors</a>
+        <a href="workshops.html">Workshops</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="humans.html">Humans</a>
+        <a href="meetups.html">Meetups</a>
+        <a href="swags.html">Swags</a>
+        <a href="prizes.html">Prizes</a>
+        <a href="contact.html">Contact</a>
         <a href="#" class="ml-4 inline-block px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm">Register</a>
       </nav>
-
-      <!-- Mobile menu button -->
-      <button id="menu-btn" class="md:hidden p-2 rounded-md bg-white/5">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-
-    <!-- mobile menu -->
-    <div id="nav-menu" class="hidden md:hidden bg-black/60 backdrop-blur py-4">
-      <div class="px-6 flex flex-col gap-3">
-        <a href="index.html" class="block py-2">Home</a>
-        <a href="sponsors.html" class="block py-2">Sponsors</a>
-        <a href="workshops.html" class="block py-2">Workshops</a>
-        <a href="schedule.html" class="block py-2">Schedule</a>
-        <a href="humans.html" class="block py-2">Humans</a>
-        <a href="meetups.html" class="block py-2">Meetups</a>
-        <a href="swags.html" class="block py-2">Swags</a>
-        <a href="prizes.html" class="block py-2">Prizes</a>
-        <a href="contact.html" class="block py-2">Contact</a>
-      </div>
     </div>
   </header>
 
-  <main class="pt-28">
-    <section class="max-w-6xl mx-auto px-6 py-20">
-      <h2 class="text-3xl font-bold mb-8">Our Sponsors</h2>
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- replace logos -->
-        <div class="p-6 bg-white/3 rounded-xl flex items-center justify-center"><img src="assets/logos/logo1.png" alt="logo" class="max-h-14"></div>
-        <div class="p-6 bg-white/3 rounded-xl flex items-center justify-center"><img src="assets/logos/logo2.png" alt="logo" class="max-h-14"></div>
-        <div class="p-6 bg-white/3 rounded-xl flex items-center justify-center"><img src="assets/logos/logo3.png" alt="logo" class="max-h-14"></div>
-        <div class="p-6 bg-white/3 rounded-xl flex items-center justify-center"><img src="assets/logos/logo4.png" alt="logo" class="max-h-14"></div>
-      </div>
-    </section>
-  </main>
+  
+    <!-- Animated Blob Background -->
+  <div class="absolute inset-0 overflow-hidden z-0">
+    <div class="blob"></div>
+  </div>
+  <!-- Hero -->
+  <section class="h-screen flex flex-col justify-center items-center text-center px-6">
+    <h1 class="text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] text-transparent bg-clip-text">Our Sponsors</h1>
+    <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+      S-Hackathon 2025 is powered by amazing sponsors and partners driving innovation and creativity.
+    </p>
+  </section>
 
-  <!-- footer same as index -->
-  <script src="js/main.js"></script>
+  <!-- GOLD -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title gold">Gold Sponsors</h2>
+    <div class="grid md:grid-cols-3 gap-8 justify-center">
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA4exfK9w9g_rL_0M-REN0UYKkEhSSDadugw&s" class="h-16" alt="GeeksforGeeks">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://www.shutterstock.com/image-vector/mx-xm-abstract-letters-logo-260nw-2513976697.jpg" class="h-14" alt="Logitech MX">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxfPUvQzJSeeddNxBnDCeaHAtz4r3Nm8RoUQ&s" class="h-10" alt="AWS">
+      </div>
+    </div>
+  </section>
+
+  <!-- SILVER -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title silver">Silver Sponsors</h2>
+    <div class="grid md:grid-cols-3 gap-8 justify-center">
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWCZER-Legal-IP-Trademarks-CP-MS-logo-740x417-1?wid=406&hei=230&fit=crop&resSharp=1" class="h-10" alt="Microsoft">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDK7e2QeXfx2HDWtbXNuarKUxbbV-r5KzDg&s" class="h-8" alt="Google Developers">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://images.seeklogo.com/logo-png/18/1/intel-logo-png_seeklogo-181977.png" class="h-10" alt="Intel">
+      </div>
+    </div>
+  </section>
+
+  <!-- BRONZE -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title bronze">Bronze Sponsors</h2>
+    <div class="grid md:grid-cols-3 gap-8 justify-center">
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbwI-YH2DFRO-mGC0sjo-Kin7So9bhNxt_YQ&s" class="h-10" alt="Notion">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyIEyfClNU0SVPqlWPYBvqUG3JjBr-Orm3dw&s" class="h-10" alt="Figma">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://t4.ftcdn.net/jpg/06/14/61/45/360_F_614614543_0alkdeqzSamlbcFan5KvtZRhbhRg7CLD.jpg" class="h-10" alt="Slack">
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE PARTNERS -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title partner">Certificate Partners</h2>
+    <div class="grid-center">
+      <div class="glass p-6 rounded-2xl grid-center w-64">
+        <img src="https://www.shutterstock.com/image-illustration/achievement-certificate-document-icon-use-600nw-2330749975.jpg" class="h-10" alt="Give My Certificate">
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM PARTNERS -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title partner">Platform Partners</h2>
+    <div class="grid-center">
+      <div class="glass p-6 rounded-2xl grid-center w-64">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZLICEcw4P2ILCtbFeRz-776FlXgC5PQd7tQ&s" class="h-10" alt="DoraHacks">
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY PARTNERS -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title partner">Community Partners</h2>
+    <div class="grid md:grid-cols-3 gap-8 justify-center">
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThdGrykld_Ed2XItRB0UDVn6vL5eMzGdcPbA&s" class="h-10" alt="Azure Developer Community">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://blockchainindia.org/wp-content/uploads/2021/05/logo-bci-min.png" class="h-10" alt="Blockchain India">
+      </div>
+      <div class="glass p-6 rounded-2xl grid-center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA4exfK9w9g_rL_0M-REN0UYKkEhSSDadugw&s" class="h-10" alt="GeeksforGeeks">
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE PARTNERS -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title partner">Knowledge Partners</h2>
+    <div class="grid-center">
+      <div class="glass p-6 rounded-2xl grid-center w-64">
+        <img src="https://images.icon-icons.com/2699/PNG/512/oracle_logo_icon_168919.png" class="h-10" alt="Oracle">
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA PARTNERS -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="section-title partner">Media Partners</h2>
+    <div class="grid-center">
+      <div class="glass p-6 rounded-2xl grid-center w-64">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlwQ_rceo3GiD0_3dgNWqyIQ-HIwrIpl0mOA&s" class="h-10" alt="Droom Droom">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="text-center py-24 border-t border-white/10">
+    <h3 class="text-2xl font-semibold mb-4 text-gray-200">Want to Sponsor the Next Edition?</h3>
+    <a href="#" class="cta-btn">Become a Sponsor</a>
+  </section>
+
+  <footer class="py-8 text-center text-sm text-slate-400 border-t border-white/10">
+    © 2025 S-Hackathon. All rights reserved.
+  </footer>
 </body>
 </html>
