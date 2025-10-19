@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meetups | S-Hackathon</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gradient-to-b from-indigo-950 to-black text-white">
+  <div id="navbar"></div>
+
+  <!-- Hero -->
+  <section class="text-center py-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] bg-cover bg-center">
+    <h1 class="text-5xl font-bold text-purple-400" data-aos="fade-down">Community Meetups</h1>
+    <p class="mt-4 text-gray-300" data-aos="fade-up">Network, collaborate, and exchange sparks of innovation!</p>
+  </section>
+
+  <!-- Meetup Cards -->
+  <section class="grid md:grid-cols-2 gap-10 px-6 md:px-20 py-16">
+    <div class="bg-gray-900/40 p-8 rounded-2xl border border-purple-600/30 hover:scale-105 transition" data-aos="fade-right">
+      <h3 class="text-2xl font-semibold text-purple-400">TechTalk Night</h3>
+      <p class="text-gray-300 mt-3">An evening of rapid-fire lightning talks where developers share their craziest tech ideas.</p>
+      <p class="text-sm text-gray-400 mt-4">📅 Oct 20, 2025 | 🕕 6:00 PM</p>
+    </div>
+
+    <div class="bg-gray-900/40 p-8 rounded-2xl border border-purple-600/30 hover:scale-105 transition" data-aos="fade-left">
+      <h3 class="text-2xl font-semibold text-purple-400">Women in Tech Meetup</h3>
+      <p class="text-gray-300 mt-3">Empowering women coders to share, inspire, and grow through meaningful discussions.</p>
+      <p class="text-sm text-gray-400 mt-4">📅 Oct 21, 2025 | 🕕 5:00 PM</p>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>
