@@ -28,6 +28,12 @@ $$('a[href^="#"], a[href$=".html"], .nav-link').forEach(a => {
     if (href && href.startsWith('#')) {
       ev.preventDefault();
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (href && href.endsWith('.html')) {
+      // Preload the next page to avoid flash
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = href;
+      document.head.appendChild(link);
     }
   });
 });
