@@ -10,7 +10,7 @@
 
   <style>
     body {
-      background: linear-gradient(to bottom right, #020617, #0a1a2f);
+      background: radial-gradient(circle at 20% 20%, #0a0220, #030014);
       color: white;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
@@ -87,7 +87,7 @@
 
 <body>
   <!-- Navbar -->
-  <header class="fixed w-full z-40 top-0 backdrop-blur-lg bg-black/40 border-b border-white/10">
+  <header class="fixed w-full z-40 top-0 bg-gradient-to-r from-[#0a0220] to-[#06061a] backdrop-blur-md border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center shadow-lg">
@@ -102,7 +102,6 @@
         <a href="workshops.html">Workshops</a>
         <a href="schedule.html">Schedule</a>
         <a href="humans.html">Humans</a>
-        <a href="meetups.html">Meetups</a>
         <a href="swags.html">Swags</a>
         <a href="prizes.html">Prizes</a>
         <a href="contact.html">Contact</a>
@@ -112,14 +111,10 @@
   </header>
 
   
-    <!-- Animated Blob Background -->
-  <div class="absolute inset-0 overflow-hidden z-0">
-    <div class="blob"></div>
-  </div>
   <!-- Hero -->
-  <section class="h-screen flex flex-col justify-center items-center text-center px-6">
-    <h1 class="text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] text-transparent bg-clip-text">Our Sponsors</h1>
-    <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+  <section class="h-screen flex flex-col justify-center items-center text-center px-6" style="background: linear-gradient(135deg, rgba(10,2,32,0.95), rgba(6,0,18,0.95));">
+    <h1 class="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#8b5cf6] via-[#06b6d4] to-[#fff] text-transparent bg-clip-text tracking-tighter">Our Sponsors</h1>
+    <p class="text-lg md:text-2xl text-[#dbeafe] font-medium max-w-2xl mt-6">
       S-Hackathon 2025 is powered by amazing sponsors and partners driving innovation and creativity.
     </p>
   </section>
@@ -128,14 +123,14 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title gold">Gold Sponsors</h2>
     <div class="grid md:grid-cols-3 gap-8 justify-center">
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA4exfK9w9g_rL_0M-REN0UYKkEhSSDadugw&s" class="h-16" alt="GeeksforGeeks">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA4exfK9w9g_rL_0M-REN0UYKkEhSSDadugw&s" class="w-full h-full object-cover" alt="GeeksforGeeks">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://www.shutterstock.com/image-vector/mx-xm-abstract-letters-logo-260nw-2513976697.jpg" class="h-14" alt="Logitech MX">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://www.shutterstock.com/image-vector/mx-xm-abstract-letters-logo-260nw-2513976697.jpg" class="w-full h-full object-cover" alt="Logitech MX">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxfPUvQzJSeeddNxBnDCeaHAtz4r3Nm8RoUQ&s" class="h-10" alt="AWS">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxfPUvQzJSeeddNxBnDCeaHAtz4r3Nm8RoUQ&s" class="w-full h-full object-cover" alt="AWS">
       </div>
     </div>
   </section>
@@ -144,14 +139,14 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title silver">Silver Sponsors</h2>
     <div class="grid md:grid-cols-3 gap-8 justify-center">
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWCZER-Legal-IP-Trademarks-CP-MS-logo-740x417-1?wid=406&hei=230&fit=crop&resSharp=1" class="h-10" alt="Microsoft">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWCZER-Legal-IP-Trademarks-CP-MS-logo-740x417-1?wid=406&hei=230&fit=crop&resSharp=1" class="w-full h-full object-cover" alt="Microsoft">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDK7e2QeXfx2HDWtbXNuarKUxbbV-r5KzDg&s" class="h-8" alt="Google Developers">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDK7e2QeXfx2HDWtbXNuarKUxbbV-r5KzDg&s" class="w-full h-full object-cover" alt="Google Developers">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://images.seeklogo.com/logo-png/18/1/intel-logo-png_seeklogo-181977.png" class="h-10" alt="Intel">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://images.seeklogo.com/logo-png/18/1/intel-logo-png_seeklogo-181977.png" class="w-full h-full object-cover" alt="Intel">
       </div>
     </div>
   </section>
@@ -160,14 +155,14 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title bronze">Bronze Sponsors</h2>
     <div class="grid md:grid-cols-3 gap-8 justify-center">
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbwI-YH2DFRO-mGC0sjo-Kin7So9bhNxt_YQ&s" class="h-10" alt="Notion">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbwI-YH2DFRO-mGC0sjo-Kin7So9bhNxt_YQ&s" class="w-full h-full object-cover" alt="Notion">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyIEyfClNU0SVPqlWPYBvqUG3JjBr-Orm3dw&s" class="h-10" alt="Figma">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyIEyfClNU0SVPqlWPYBvqUG3JjBr-Orm3dw&s" class="w-full h-full object-cover" alt="Figma">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://t4.ftcdn.net/jpg/06/14/61/45/360_F_614614543_0alkdeqzSamlbcFan5KvtZRhbhRg7CLD.jpg" class="h-10" alt="Slack">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://t4.ftcdn.net/jpg/06/14/61/45/360_F_614614543_0alkdeqzSamlbcFan5KvtZRhbhRg7CLD.jpg" class="w-full h-full object-cover" alt="Slack">
       </div>
     </div>
   </section>
@@ -176,8 +171,8 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title partner">Certificate Partners</h2>
     <div class="grid-center">
-      <div class="glass p-6 rounded-2xl grid-center w-64">
-        <img src="https://www.shutterstock.com/image-illustration/achievement-certificate-document-icon-use-600nw-2330749975.jpg" class="h-10" alt="Give My Certificate">
+      <div class="glass rounded-2xl overflow-hidden h-48 w-64">
+        <img src="https://www.shutterstock.com/image-illustration/achievement-certificate-document-icon-use-600nw-2330749975.jpg" class="w-full h-full object-cover" alt="Give My Certificate">
       </div>
     </div>
   </section>
@@ -186,8 +181,8 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title partner">Platform Partners</h2>
     <div class="grid-center">
-      <div class="glass p-6 rounded-2xl grid-center w-64">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZLICEcw4P2ILCtbFeRz-776FlXgC5PQd7tQ&s" class="h-10" alt="DoraHacks">
+      <div class="glass rounded-2xl overflow-hidden h-48 w-64">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZLICEcw4P2ILCtbFeRz-776FlXgC5PQd7tQ&s" class="w-full h-full object-cover" alt="DoraHacks">
       </div>
     </div>
   </section>
@@ -196,14 +191,14 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title partner">Community Partners</h2>
     <div class="grid md:grid-cols-3 gap-8 justify-center">
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThdGrykld_Ed2XItRB0UDVn6vL5eMzGdcPbA&s" class="h-10" alt="Azure Developer Community">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThdGrykld_Ed2XItRB0UDVn6vL5eMzGdcPbA&s" class="w-full h-full object-cover" alt="Azure Developer Community">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://blockchainindia.org/wp-content/uploads/2021/05/logo-bci-min.png" class="h-10" alt="Blockchain India">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://blockchainindia.org/wp-content/uploads/2021/05/logo-bci-min.png" class="w-full h-full object-cover" alt="Blockchain India">
       </div>
-      <div class="glass p-6 rounded-2xl grid-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA4exfK9w9g_rL_0M-REN0UYKkEhSSDadugw&s" class="h-10" alt="GeeksforGeeks">
+      <div class="glass rounded-2xl overflow-hidden h-48">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA4exfK9w9g_rL_0M-REN0UYKkEhSSDadugw&s" class="w-full h-full object-cover" alt="GeeksforGeeks">
       </div>
     </div>
   </section>
@@ -212,8 +207,8 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title partner">Knowledge Partners</h2>
     <div class="grid-center">
-      <div class="glass p-6 rounded-2xl grid-center w-64">
-        <img src="https://images.icon-icons.com/2699/PNG/512/oracle_logo_icon_168919.png" class="h-10" alt="Oracle">
+      <div class="glass rounded-2xl overflow-hidden h-48 w-64">
+        <img src="https://images.icon-icons.com/2699/PNG/512/oracle_logo_icon_168919.png" class="w-full h-full object-cover" alt="Oracle">
       </div>
     </div>
   </section>
@@ -222,8 +217,8 @@
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="section-title partner">Media Partners</h2>
     <div class="grid-center">
-      <div class="glass p-6 rounded-2xl grid-center w-64">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlwQ_rceo3GiD0_3dgNWqyIQ-HIwrIpl0mOA&s" class="h-10" alt="Droom Droom">
+      <div class="glass rounded-2xl overflow-hidden h-48 w-64">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlwQ_rceo3GiD0_3dgNWqyIQ-HIwrIpl0mOA&s" class="w-full h-full object-cover" alt="Droom Droom">
       </div>
     </div>
   </section>
