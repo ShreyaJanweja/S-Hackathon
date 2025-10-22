@@ -9,23 +9,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
   <style>
     body {
+      background: radial-gradient(circle at 20% 20%, #0a0220, #030014);
       font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at 20% 20%, #0b0020, #070017, #04000e);
       color: white;
       overflow-x: hidden;
     }
 
-    /* Hero Glow */
-    .glow-text {
-      background: linear-gradient(90deg, #06b6d4, #8b5cf6, #f472b6);
+    .section-heading {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(to right, #8b5cf6, #06b6d4);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glowmove 6s infinite linear;
-      background-size: 200% 200%;
     }
-    @keyframes glowmove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(10,2,32,0.95), rgba(6,0,18,0.95));
+    }
+
+    .contact-card {
+      background: rgba(20, 20, 40, 0.9);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 25px rgba(139, 92, 246, 0.08);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 35px rgba(139, 92, 246, 0.25);
     }
 
     /* Flip Card */
@@ -65,17 +86,14 @@
 <body>
 
   <!-- NAVBAR -->
-  <header class="fixed w-full z-40 top-0">
+  <header class="fixed w-full z-40 top-0 bg-gradient-to-r from-[#0a0220] to-[#06061a] backdrop-blur-md border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center shadow-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z" fill="white"/>
-          </svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z" fill="white"/></svg>
         </div>
         <span class="text-lg md:text-xl font-semibold tracking-tight">S-Hackathon</span>
       </a>
-
       <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200/90">
         <a href="index.html" class="nav-link">Home</a>
         <a href="sponsors.html" class="nav-link">Sponsors</a>
@@ -88,71 +106,70 @@
         <a href="contact.html" class="nav-link">Contact</a>
         <a href="#" class="ml-4 inline-block px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm">Register</a>
       </nav>
+      <button id="menu-btn" class="md:hidden p-2 rounded-md bg-white/5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="nav-menu" class="hidden md:hidden bg-black/60 backdrop-blur py-4">
+      <div class="px-6 flex flex-col gap-3">
+        <a href="index.html" class="block py-2">Home</a>
+        <a href="sponsors.html" class="block py-2">Sponsors</a>
+        <a href="workshops.html" class="block py-2">Workshops</a>
+        <a href="schedule.html" class="block py-2">Schedule</a>
+        <a href="humans.html" class="block py-2">Humans</a>
+        <a href="meetups.html" class="block py-2">Meetups</a>
+        <a href="swags.html" class="block py-2">Swags</a>
+        <a href="prizes.html" class="block py-2">Prizes</a>
+        <a href="contact.html" class="block py-2">Contact</a>
+      </div>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="pt-32 pb-24 text-center relative overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_#8b5cf620,_transparent_60%),_radial-gradient(circle_at_bottom_right,_#06b6d420,_transparent_60%)] animate-pulse"></div>
-    <h1 class="text-5xl md:text-6xl font-bold glow-text relative z-10">Workshops & Sessions</h1>
-    <p class="mt-4 text-gray-300 max-w-2xl mx-auto relative z-10">Dive into hands-on sessions, learn from top experts, and get hackathon-ready with the latest tools and trends!</p>
+  <section class="hero">
+    <h1 class="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#06b6d4] to-[#fff] tracking-tighter">
+      Workshops & Sessions
+    </h1>
+    <p class="text-lg md:text-2xl text-[#dbeafe] font-medium max-w-2xl mt-6">
+      Dive into hands-on sessions, learn from top experts, and get hackathon-ready with the latest tools and trends!
+    </p>
   </section>
 
   <!-- UPCOMING WORKSHOPS -->
-  <section class="max-w-7xl mx-auto px-6 py-16">
-    <h2 class="text-3xl font-bold text-purple-400 mb-10 text-center">Upcoming Workshops</h2>
+  <section class="py-16 px-6 max-w-7xl mx-auto">
+    <h2 class="section-heading">Upcoming Workshops</h2>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="p-6 bg-white/5 rounded-2xl hover:scale-105 transition">
-        <img src="https://images.unsplash.com/photo-1581092335365-590c740d1eeb?auto=format&fit=crop&w=800&q=80" class="rounded-lg mb-4">
+      <div class="contact-card">
+        <img src="assests/workshop3.jpg" class="rounded-lg mb-4">
         <h3 class="text-xl font-semibold text-cyan-400">AI with Azure</h3>
         <p class="text-gray-300 mt-2">Learn to build intelligent apps using Azure’s AI services and OpenAI integrations.</p>
-        <p class="mt-3 text-sm text-gray-400">🗓 Oct 25, 2025 | 🕒 2:00 PM</p>
+        <p class="mt-3 text-sm text-gray-400">🗓 Nov 13, 2025 | 🕒 2:00 PM</p>
       </div>
 
-      <div class="p-6 bg-white/5 rounded-2xl hover:scale-105 transition">
-        <img src="https://images.unsplash.com/photo-1629904853694-7b0a66e3fa52?auto=format&fit=crop&w=800&q=80" class="rounded-lg mb-4">
+      <div class="contact-card">
+        <img src="assests/workshop2.jpg" class="rounded-lg mb-4">
         <h3 class="text-xl font-semibold text-pink-400">Blockchain 101</h3>
         <p class="text-gray-300 mt-2">Understand blockchain fundamentals and build your first decentralized app.</p>
-        <p class="mt-3 text-sm text-gray-400">🗓 Oct 26, 2025 | 🕒 11:00 AM</p>
+        <p class="mt-3 text-sm text-gray-400">🗓 Nov 14, 2025 | 🕒 11:00 AM</p>
       </div>
 
-      <div class="p-6 bg-white/5 rounded-2xl hover:scale-105 transition">
-        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80" class="rounded-lg mb-4">
+      <div class="contact-card">
+        <img src="assests/workshop1.jpg" class="rounded-lg mb-4">
         <h3 class="text-xl font-semibold text-purple-400">Web Dev Crash Course</h3>
         <p class="text-gray-300 mt-2">Get a fast-paced introduction to HTML, CSS, JS, and the frameworks for hackathon apps.</p>
-        <p class="mt-3 text-sm text-gray-400">🗓 Oct 27, 2025 | 🕒 4:30 PM</p>
+        <p class="mt-3 text-sm text-gray-400">🗓 Nov 15, 2025 | 🕒 4:30 PM</p>
       </div>
     </div>
   </section>
 
-  <!-- PAST WORKSHOPS -->
-  <section class="bg-white/5 py-16">
-    <h2 class="text-3xl font-bold text-center text-cyan-400 mb-10">Past Workshops</h2>
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6">
-      <div class="relative group">
-        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=1000&q=80" class="rounded-2xl brightness-75 group-hover:brightness-100 transition">
-        <div class="absolute inset-0 bg-black/40 rounded-2xl flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
-          <h3 class="text-xl font-semibold mb-2">Intro to Cloud Computing</h3>
-          <p class="text-sm text-gray-300">Covered AWS, GCP, and Azure fundamentals with live demos.</p>
-        </div>
-      </div>
-      <div class="relative group">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80" class="rounded-2xl brightness-75 group-hover:brightness-100 transition">
-        <div class="absolute inset-0 bg-black/40 rounded-2xl flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
-          <h3 class="text-xl font-semibold mb-2">AI Ethics & Innovation</h3>
-          <p class="text-sm text-gray-300">Exploring responsible AI development in modern tech.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- SPEAKERS -->
-  <section class="py-20 max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-purple-400 mb-10 text-center">Meet Our Speakers</h2>
+  <section class="py-16 px-6 max-w-7xl mx-auto">
+    <h2 class="section-heading">Meet Our Speakers</h2>
     <div class="grid md:grid-cols-3 gap-10">
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="https://randomuser.me/api/portraits/women/65.jpg" class="rounded-2xl w-full h-72 object-cover"></div>
+          <div class="flip-front"><img src="assests/speaker2.jpg" class="rounded-2xl w-full h-72 object-cover"></div>
           <div class="flip-back flex flex-col items-center justify-center text-center">
             <h3 class="text-xl font-semibold text-cyan-400 mb-2">Dr. Riya Kapoor</h3>
             <p class="text-gray-300">AI Researcher | Microsoft</p>
@@ -163,7 +180,7 @@
 
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="https://randomuser.me/api/portraits/men/75.jpg" class="rounded-2xl w-full h-72 object-cover"></div>
+          <div class="flip-front"><img src="assests/speaker3.jpg" class="rounded-2xl w-full h-72 object-cover"></div>
           <div class="flip-back flex flex-col items-center justify-center text-center">
             <h3 class="text-xl font-semibold text-pink-400 mb-2">Rajesh Sharma</h3>
             <p class="text-gray-300">Full Stack Developer | Google</p>
@@ -174,7 +191,7 @@
 
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="https://randomuser.me/api/portraits/women/42.jpg" class="rounded-2xl w-full h-72 object-cover"></div>
+          <div class="flip-front"><img src="assests/speaker4.jpg" class="rounded-2xl w-full h-72 object-cover"></div>
           <div class="flip-back flex flex-col items-center justify-center text-center">
             <h3 class="text-xl font-semibold text-purple-400 mb-2">Ananya Singh</h3>
             <p class="text-gray-300">UI/UX Designer | Figma</p>
@@ -185,36 +202,30 @@
     </div>
   </section>
 
-  <!-- LEARNING TRACKS -->
-  <section class="py-20 bg-white/5 text-center">
-    <h2 class="text-3xl font-bold text-cyan-400 mb-8">Learning Tracks</h2>
+  <!-- LEARNING -->
+  <section class="py-16 px-6 max-w-7xl mx-auto">
+    <h2 class="section-heading"></h2>
     <div class="flex justify-center gap-4 mb-8">
-      <button class="tab-btn active px-4 py-2 rounded-full">AI/ML</button>
-      <button class="tab-btn px-4 py-2 rounded-full">Web Dev</button>
-      <button class="tab-btn px-4 py-2 rounded-full">Blockchain</button>
+      <!-- <button class="tab-btn active px-4 py-2 rounded-full"></button> -->
+      <!-- <button class="tab-btn px-4 py-2 rounded-full"></button> -->
+      <!-- <button class="tab-btn px-4 py-2 rounded-full"></button> -->
     </div>
+    <br><br><br><br><br>
     <div class="max-w-3xl mx-auto text-gray-300" id="tab-content">
-      <p>AI/ML track includes neural networks, LLMs, and image recognition using TensorFlow and OpenAI APIs.</p>
+      <p>AI/ML track includes neural networks, LLMs, and image recognition using TensorFlow & OpenAI APIs.</p>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="text-center py-20 bg-gradient-to-r from-[#8b5cf620] to-[#06b6d420]">
-    <h2 class="text-4xl font-bold glow-text mb-4">Host Your Own Workshop!</h2>
-    <p class="text-gray-300 mb-8">Want to mentor, teach, or showcase your innovation? Join us in shaping the next hackathon generation!</p>
-    <button class="px-8 py-3 bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold rounded-full hover:scale-105 transition">Apply Now</button>
   </section>
 
   <!-- COMING SOON -->
-  <section class="py-16 text-center">
-    <h2 class="text-3xl font-bold text-purple-400 mb-4">More Workshops Coming Soon!</h2>
-    <p class="text-gray-400">Stay tuned for updates — new speakers, advanced tracks, and exciting sessions await 🚀</p>
+  <section class="py-16 px-6 max-w-7xl mx-auto text-center">
+    <h2 class="section-heading">More Workshops Coming Soon!</h2>
+    <p class="text-gray-400">Stay tuned for updates — new speakers, advanced tracks, and exciting sessions await.</p>
   </section>
 
   <!-- FOOTER -->
   <footer class="mt-16 border-t border-white/6 py-8">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="text-sm text-slate-400">© 2025 S-Hackathon • Built by Shreya</div>
+      <div class="text-sm text-slate-400">© 2025 S-Hackathon • Powered by Coding Ninjas , CUIET</div>
       <div class="flex gap-4">
         <a href="#" class="text-slate-300/90">Privacy</a>
         <a href="#" class="text-slate-300/90">Code of Conduct</a>
