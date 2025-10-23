@@ -1,107 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Swags | S-Hackathon</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet"/>
   <style>
     body {
-      background: radial-gradient(circle at 20% 20%, #0a0220, #030014);
       font-family: 'Inter', sans-serif;
       color: white;
+      --primary:#8b5cf6; --secondary:#06b6d4;
+      min-height:100vh;
+      overflow-x:hidden;
     }
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(10,2,32,0.95), rgba(6,0,18,0.95));
+    .glow-card {
+      border: 1.5px solid rgba(139,92,246,0.20);
+      background: rgba(20,25,40,0.92);
+      border-radius: 1.25rem;
+      box-shadow: 0 0 36px 5px rgba(139,92,246,0.07);
+      transition: all 0.3s cubic-bezier(.33,.91,.59,.99);
     }
-    .hero h1 {
-      font-size: 4.5rem;
+    .glow-card:hover {
+      transform: translateY(-6px) scale(1.035);
+      box-shadow: 0 0 48px 2px #7b50eacc, 0 0 15px 2px #06b6d4cc;
+      border-color: var(--secondary);
+    }
+    .section-heading {
+      font-size:2.6rem;
       font-weight: 800;
-      background: linear-gradient(to right, #8b5cf6, #06b6d4);
+      background: linear-gradient(90deg,#8b5cf6,#06b6d4 85%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: -0.05em;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1.2s ease-out forwards;
+      text-align:center;
+      margin-bottom:2.5rem;
     }
-    .hero p {
-      margin-top: 1rem;
-      font-size: 1.25rem;
-      color: #dbeafe;
-      max-width: 650px;
-      font-weight: 600;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+
+    .badge {
+      display:inline-block;
+      font-size:1rem;
+      letter-spacing:0.035em;
+      padding:.55rem 1.5rem .5rem;
+      border-radius:999px;
+      background:linear-gradient(100deg,#8b5cf6,#06b6d4);
+      color:#191825;
+      font-weight:600;
+      box-shadow:0 2px 24px #06b6d488;
+      border:2px solid #fff2;
+      margin-bottom:1.7rem;
+      animation:pulse2 2.1s infinite;
     }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes pulse2 {
+      0%,100%{box-shadow:0 0 16px #8b5cf644;}
+      60%{box-shadow:0 0 42px #06b6d488;}
     }
-    .swag-item {
+    /* Swag gallery grid */
+    .swag-gallery {
+      max-width: 1200px;
+      margin: 2rem auto 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem 2.5rem;
+    }
+    /* Swag card with hover effects and shimmer */
+    .swag-card {
       background: rgba(20, 20, 40, 0.9);
-      border: 1px solid rgba(139, 92, 246, 0.35);
       border-radius: 16px;
       padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.15);
+      transition: all 0.4s ease;
       text-align: center;
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
-    .swag-item:hover {
+    .swag-card:hover {
       transform: scale(1.05);
-      box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+      box-shadow: 0 0 45px rgba(139, 92, 246, 0.5);
     }
-    .swag-item img {
-      width: 96px;
-      height: 96px;
+    .swag-card img {
+      width: 140px;
+      height: 140px;
       margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+      transition: transform 0.3s;
     }
-    .swag-item h3 {
+    .swag-card:hover img {
+      transform: scale(1.1);
+    }
+    .swag-card h3 {
       font-size: 1.5rem;
       font-weight: 700;
       color: #8b5cf6;
     }
-    .swag-item p {
-      margin-top: 10px;
+    .swag-card p {
+      margin-top: 12px;
       color: #c0caf5;
       font-size: 1rem;
-      line-height: 1.4;
+      line-height: 1.5;
     }
-    footer {
-      margin-top: 3rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1.5rem 0;
-      color: #8b8fa3;
-      font-size: 0.875rem;
+    /* Badges for highlights on cards */
+    .swag-badge {
+      display: inline-block;
+      background: linear-gradient(90deg,#06b6d4,#8b5cf6);
+      color: black;
+      font-weight: bold;
+      font-size: 0.8rem;
+      padding: 0.3rem 1rem;
+      border-radius: 9999px;
+      margin-top: 10px;
+    }
+    /* Animated box reveal */
+    .swag-unbox {
+      position: relative;
+      overflow: hidden;
+    }
+    .swag-unbox::after {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 300%;
+      background: linear-gradient(70deg, #8b5cf6, #06b6d4, #8b5cf6);
+      animation: shine 2.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes shine {
+      0%,100% {top: -100%;}
+      50% {top: 100%;}
+    }
+    /* Swag reveal animation */
+    .swag-reveal {
+      position: relative;
+      cursor: pointer;
+    }
+    .swag-reveal .box {
+      background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.5s;
+    }
+    .swag-reveal.opened .box {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    .swag-reveal .content {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s;
+    }
+    .swag-reveal.opened .content {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* Bundle table */
+    .bundle-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .bundle-card {
+      background: rgba(20,25,40,0.9);
+      border-radius: 16px;
+      padding: 20px;
       text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.3s;
     }
+    .bundle-card:hover {
+      border-color: #8b5cf6;
+      transform: translateY(-5px);
+    }
+    /* Photo wall */
+    .photo-wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .photo-item {
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .photo-item:hover {
+      transform: scale(1.05);
+    }
+    .photo-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    /* Timeline */
+    .timeline-main {
+      position:relative;
+      max-width:960px;
+      margin:0 auto;
+      padding: 0 0 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap:2rem;
+    }
+    .timeline-vert {
+      position:absolute;left:50%;top: 0;transform:translateX(-50%);
+      width: 5px;height:100%;background:linear-gradient(180deg,#8b5cf6,#06b6d4);z-index:0;
+      border-radius:2px;
+    }
+    .tl-row {
+      display:flex;align-items:center;
+      position:relative;
+      min-height:84px;
+    }
+    .tl-marker {
+      position:absolute;left:50%;transform:translateX(-50%);
+      width: 25px;height: 25px;border-radius:50%;
+      background: linear-gradient(120deg,#8b5cf6,#06b6d4 90%);
+      box-shadow:0 0 0 9px #8b5cf624,0 0 0 3px #06b6d448;
+      z-index:2;border:2.5px solid #101010;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;font-weight:700;color:#fff;
+    }
+    .tl-row-left, .tl-row-right {
+      flex:1; min-width:180px;
+    }
+    .event-time {color:#9dd7e2;font-weight:600;margin-bottom:0.2rem;}
+    .tl-title {font-size:1.1rem;font-weight:700; color:#a782ec;}
+    .tl-desc {font-size:1.01rem;color:#cbd5e1;}
+    .btn-grad {
+      background:linear-gradient(90deg,#06b6d4,#8b5cf6);
+      color:#1b0137;font-weight:700;font-size:1.1rem;
+      padding:.9rem 2.7rem;border-radius:1.65rem;
+      margin-top:2.1rem;margin-bottom:.7rem;box-shadow:0 5px 32px #8b5cf655;
+      transition:.3s;
+      display:inline-block;
+    }
+    .btn-grad:hover {background:linear-gradient(90deg,#8b5cf6,#06b6d4);transform:scale(1.04);}
+    /* CTAs & footer */
+    .cta-bar {background:linear-gradient(90deg,#181926 80%,#14014d 120%);}
+    .footer-split {
+      max-width:1300px;
+      margin:auto;
+      color:#c1bff9;
+      padding:1.5rem 0 0.6rem;
+      display:flex;flex-wrap:wrap;
+      align-items:center;justify-content:space-between;
+      border-top:1px solid #2d2355;
+      gap:1.1rem;
+    }
+    .footer-split .links a{color:#8b5cf6;margin-right:1.5rem;font-size:1rem;transition:.25s;}
+    .footer-split .links a:hover{color:#06b6d4;}
+    .footer-split .social a{margin-left:1.2rem;color:#b2cdfc;transition:.2s;}
+    .footer-split .social a:hover{color:#06b6d4;transform:scale(1.18);}
   </style>
 </head>
-<body>
+<body class="overflow-x-hidden bg-[#0a0220]">
 
-  <!-- Navbar -->
-  <header class="fixed w-full z-40 top-0 bg-gradient-to-r from-[#0a0220] to-[#06061a] backdrop-blur-md border-b border-white/10">
+
+  <!-- NAVBAR -->
+  <header class="fixed w-full z-40 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center shadow-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z" fill="white"/>
-          </svg>
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z"/></svg>
         </div>
-        <span class="text-lg md:text-xl font-semibold tracking-tight">S-Hackathon</span>
+        <span class="text-xl font-semibold tracking-tight">S-Hackathon</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200/90">
         <a href="index.html">Home</a>
@@ -114,58 +283,170 @@
         <a href="contact.html">Contact</a>
         <a class="px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm ml-2 pointer-events-none opacity-60">Registration Soon</a>
       </nav>
-      <!-- Mobile menu button -->
-      <button id="menu-btn" class="md:hidden p-2 rounded-md bg-white/5">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-    <!-- mobile menu -->
-    <div id="nav-menu" class="hidden md:hidden bg-black/60 backdrop-blur py-4">
-      <div class="px-6 flex flex-col gap-3">
-        <a href="index.html" class="block py-2">Home</a>
-        <a href="sponsors.html" class="block py-2">Sponsors</a>
-        <a href="workshops.html" class="block py-2">Workshops</a>
-        <a href="schedule.html" class="block py-2">Schedule</a>
-        <a href="humans.html" class="block py-2">Humans</a>
-        <a href="meetups.html" class="block py-2">Meetups</a>
-        <a href="swags.html" class="block py-2">Swags</a>
-        <a href="prizes.html" class="block py-2">Prizes</a>
-        <a href="contact.html" class="block py-2">Contact</a>
-      </div>
     </div>
   </header>
 
- <!-- HERO SECTION --> <section class="hero">
- <h1>Hackathon Swags</h1>
-  <p>Exclusive goodies for our brilliant hackers! Celebrate your achievements with official S-Hackathon swag.</p>
- </section>
+  <!-- HERO -->
+  <section class="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10 pt-16">
+    <span class="badge text-base sm:text-lg">S-Hackathon 2025 — Exclusive Swags Await!</span>
+    <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#06b6d4] to-white tracking-tight mb-5">
+      Unleash Your Spark<br/>with Epic Swags!
+    </h1>
+    <p class="mt-1 text-lg text-slate-200 max-w-2xl">Dive into a galaxy of goodies! From cosmic tees to innovative gadgets, claim your rewards and showcase your hacking prowess.</p>
+    <div class="mt-10 flex gap-6 justify-center">
+      <a href="#gallery" class="btn-grad">Explore Gallery</a>
+      <a href="#bundles" class="btn-grad">View Bundles</a>
+    </div>
+  </section>
 
-  <!-- Swag Grid -->
-  <section class="max-w-7xl mx-auto px-6 md:px-20 py-16 grid md:grid-cols-3 gap-10">
-  <div class="swag-item">
-  <img src="goodie1.jpg" alt="T-shirt" />
-  <h3>Official T-Shirt</h3>
-  <p>A cosmic-themed tee that shines as bright as your ideas!</p>
-  </div>
+  <!-- PREMIUM SWAG GALLERY -->
+  <section id="gallery" class="py-20 max-w-6xl mx-auto px-6">
+    <h2 class="section-heading">Premium Swag Gallery</h2>
+    <div class="swag-gallery">
+      <div class="swag-card">
+        <img src="goodie1.jpg" alt="Official T-Shirt"/>
+        <h3>Official T-Shirt</h3>
+        <p>Cosmic-themed tee that shines as bright as your ideas! High-quality fabric with gradient prints.</p>
+        <span class="swag-badge">Limited Edition</span>
+      </div>
+      <div class="swag-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/187/187879.png" alt="Sticker Pack"/>
+        <h3>Sticker Pack</h3>
+        <p>Decorate your laptops with creativity and sparks of code. Waterproof and durable.</p>
+        <span class="swag-badge">Top Pick</span>
+      </div>
+      <div class="swag-card">
+        <img src="goodie3.jpg" alt="Goodie Bag"/>
+        <h3>Goodie Bag</h3>
+        <p>Exclusive partner gifts and a dash of innovation inside! Eco-friendly materials.</p>
+        <span class="swag-badge">Eco-Friendly</span>
+      </div>
+      <div class="swag-card">
+        <img src="assests/swag4.jpg" alt="Water Bottle"/>
+        <h3>Insulated Water Bottle</h3>
+        <p>Stay hydrated with our sustainable steel bottle. Keeps drinks cold for 24 hours.</p>
+      </div>
+      <div class="swag-card">
+        <img src="assests/swag5.jpg" alt="Laptop Sleeve"/>
+        <h3>Custom Laptop Sleeve</h3>
+        <p>Protect your gear in style with our padded sleeve. Custom designs for every hacker.</p>
+        <span class="swag-badge">Top Pick</span>
+      </div>
+      <div class="swag-card">
+        <img src="assests/swag6.jpg" alt="Lanyard & Badge"/>
+        <h3>Lanyard & Badge</h3>
+        <p>Show your hackathon pride and access with style. RFID-enabled for convenience.</p>
+      </div>
+      <div class="swag-card">
+        <img src="assests/swag7.jpg" alt="Hoodie"/>
+        <h3>Hoodie</h3>
+        <p>Cozy up with our high-quality event hoodie. Perfect for late-night coding sessions.</p>
+        <span class="swag-badge">Limited Edition</span>
+      </div>
+      <div class="swag-card">
+        <img src="assests/swag8.jpg" alt="Wireless Charger"/>
+        <h3>Wireless Charger</h3>
+        <p>Keep powered up on the go with this sleek charger. Fast charging for all devices.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="swag-item">
- <img src="https://cdn-icons-png.flaticon.com/512/187/187879.png" alt="Sticker Pack" />
- <h3>Sticker Pack</h3>
-  <p>Decorate your laptops with creativity and sparks of code.</p>
-  </div>
+  <!-- SWAG BUNDLES / TIERS -->
+  <section id="bundles" class="py-20 max-w-6xl mx-auto px-6">
+    <h2 class="section-heading">Swag Bundles by Tier</h2>
+    <div class="bundle-table">
+      <div class="bundle-card">
+        <h3 class="text-xl font-bold text-[#8b5cf6]">Participant Bundle</h3>
+        <p class="text-gray-300 mt-2">T-Shirt, Sticker Pack, Goodie Bag</p>
+        <span class="swag-badge">All Attendees</span>
+      </div>
+      <div class="bundle-card">
+        <h3 class="text-xl font-bold text-[#06b6d4]">Winner Bundle</h3>
+        <p class="text-gray-300 mt-2">Hoodie, Laptop Sleeve, Water Bottle, Wireless Charger</p>
+        <span class="swag-badge">Top 3 Teams</span>
+      </div>
+      <div class="bundle-card">
+        <h3 class="text-xl font-bold text-[#f97316]">Speaker Bundle</h3>
+        <p class="text-gray-300 mt-2"> Special Badge, Exclusive Merch</p>
+        <span class="swag-badge">Mentors & Speakers</span>
+      </div>
+    </div>
+  </section>
 
- <div class="swag-item">
-  <img src="goodie3.jpg" alt="Goodie Bag" />
- <h3>Goodie Bag</h3>
-  <p>Exclusive partner gifts and a dash of innovation inside!</p>
-  </div>
+
+  <!-- CLAIM TIMELINE -->
+  <section class="py-20 px-3 sm:px-6">
+    <h2 class="section-heading">Swag Claim Timeline</h2>
+    <div class="timeline-main">
+      <div class="timeline-vert"></div>
+      <div class="tl-row mb-4">
+        <div class="tl-row-left text-right pr-6 md:pr-12">
+          <div class="event-time">Day 1, 10:00 AM</div>
+          <div class="tl-title">Registration Check-in</div>
+          <div class="tl-desc text-sm">Pick up your participant badge and initial swag kit.</div>
+        </div>
+        <div class="tl-marker">1</div>
+        <div class="tl-row-right pl-6 md:pl-12"></div>
+      </div>
+      <div class="tl-row mb-4">
+        <div class="tl-row-left"></div>
+        <div class="tl-marker">2</div>
+        <div class="tl-row-right pl-6 md:pl-12">
+          <div class="event-time">Day 2, 2:00 PM</div>
+          <div class="tl-title">Result Ceremony</div>
+          <div class="tl-desc text-sm">Winners claim exclusive bundles on stage.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-row-left text-right pr-6 md:pr-12">
+          <div class="event-time">Post-Event</div>
+          <div class="tl-title">Digital Swag Download</div>
+          <div class="tl-desc text-sm">Access certificates, wallpapers, and badges online.</div>
+        </div>
+        <div class="tl-marker">3</div>
+        <div class="tl-row-right"></div>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 S-Hackathon • Built by Shreya
+    <div class="footer-split">
+      <span>© 2025 S-Hackathon | Powered by Coding Ninjas, CUIET</span>
+      <span class="links">
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="#" class="pointer-events-none opacity-60">Registration Soon</a>
+        <a href="contact.html">Contact</a>
+      </span>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- GSAP Animations -->
+  <script>
+    gsap.utils.toArray("section").forEach((section, i) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 80,
+        duration: 1.1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+        },
+        delay: i*.07
+      });
+    });
+    gsap.from(".hero h1", {opacity:0,y:-120,duration:1.3,ease:"power3.out",delay:.3});
+    gsap.from(".hero .badge", {opacity:0,y:-30,duration:1.1,delay:.7});
+    gsap.from(".hero .btn-grad",{opacity:0,scale:.7,stagger:.18,duration:1.2,delay:.8});
+
+    // Swag reveal animation
+    document.querySelectorAll('.swag-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('opened');
+      });
+    });
+  </script>
+
 </body>
 </html>
