@@ -35,6 +35,25 @@
       background: linear-gradient(135deg, rgba(10,2,32,0.95), rgba(6,0,18,0.95));
     }
 
+    .hero h1 {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .hero p {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .contact-card {
       background: rgba(20, 20, 40, 0.9);
       border: 1px solid rgba(139, 92, 246, 0.35);
@@ -95,14 +114,14 @@
         <span class="text-lg md:text-xl font-semibold tracking-tight">S-Hackathon</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200/90">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="sponsors.html" class="nav-link">Sponsors</a>
-        <a href="workshops.html" class="nav-link">Workshops</a>
-        <a href="schedule.html" class="nav-link">Schedule</a>
-        <a href="humans.html" class="nav-link">Humans</a>
-        <a href="swags.html" class="nav-link">Swags</a>
-        <a href="prizes.html" class="nav-link">Prizes</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="workshops.html" class="text-[#06b6d4] font-semibold">Workshops</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="humans.html">Humans</a>
+        <a href="swags.html">Swags</a>
+        <a href="prizes.html">Prizes</a>
+        <a href="contact.html">Contact</a>
         <a class="px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm ml-2 pointer-events-none opacity-60">Registration Soon</a>
       </nav>
       <button id="menu-btn" class="md:hidden p-2 rounded-md bg-white/5">

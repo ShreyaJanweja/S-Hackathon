@@ -28,6 +28,9 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: -0.05em;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards;
     }
     .hero p {
       margin-top: 1rem;
@@ -35,6 +38,15 @@
       color: #dbeafe;
       max-width: 650px;
       font-weight: 600;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .swag-item {
       background: rgba(20, 20, 40, 0.9);
@@ -97,7 +109,7 @@
         <a href="workshops.html">Workshops</a>
         <a href="schedule.html">Schedule</a>
         <a href="humans.html">Humans</a>
-        <a href="swags.html" class="font-bold text-white">Swags</a>
+        <a href="swags.html" class="text-[#06b6d4] font-semibold">Swags</a>
         <a href="prizes.html">Prizes</a>
         <a href="contact.html">Contact</a>
         <a class="px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm ml-2 pointer-events-none opacity-60">Registration Soon</a>

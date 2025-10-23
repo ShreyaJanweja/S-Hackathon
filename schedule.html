@@ -13,6 +13,34 @@
       background: radial-gradient(circle at 20% 20%, #0a0220, #030014);
       font-family: 'Inter', sans-serif;
     }
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(10,2,32,0.95), rgba(6,0,18,0.95));
+    }
+
+    .hero h1 {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .hero .hero-text {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     .timeline-line {
       position: absolute;
       left: 50%;
@@ -75,7 +103,7 @@
       <a href="index.html">Home</a>
       <a href="sponsors.html">Sponsors</a>
       <a href="workshops.html">Workshops</a>
-      <a href="schedule.html">Schedule</a>
+      <a href="schedule.html" class="text-[#06b6d4] font-semibold">Schedule</a>
       <a href="humans.html">Humans</a>
       <a href="swags.html">Swags</a>
       <a href="prizes.html">Prizes</a>
@@ -86,19 +114,19 @@
 </header>
 
   <!-- HERO SECTION -->
-  <section class="pt-36 pb-20 flex flex-col items-center justify-center text-center gap-8 bg-gradient-to-r from-[#0a0220]/90 to-[#060212]/90">
+  <section class="hero">
     <h1 class="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#06b6d4] to-[#fff] tracking-tighter">
       S-Hackathon 2025
     </h1>
-    <div class="max-w-lg mx-auto text-lg md:text-xl text-[#dbeafe] font-semibold">
+    <div class="hero-text max-w-lg mx-auto text-lg md:text-xl text-[#dbeafe] font-semibold">
       Where ideas ignite, teams collaborate, and future leaders are made.
     </div>
-    <div class="mt-7 text-lg">
+    <div class="hero-text mt-7 text-lg">
       <span class="px-5 py-3 bg-gradient-to-r from-[#8b5cf6]/80 to-[#06b6d4]/80 rounded-xl font-bold text-black/90 shadow-md text-xl">
         Dates: November 16–17, 2025
       </span>
     </div>
-    <div class="mt-3 text-lg md:text-xl text-[#6ee7b7] font-medium">
+    <div class="hero-text mt-3 text-lg md:text-xl text-[#6ee7b7] font-medium">
       Chitkara University, Punjab
     </div>
   </section>

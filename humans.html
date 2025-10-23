@@ -59,6 +59,25 @@
       background: linear-gradient(135deg, rgba(10,2,32,0.95), rgba(6,0,18,0.95));
     }
 
+    .hero h1 {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .hero p {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* Contact Section Styling */
     .contact-section {
       background: linear-gradient(90deg, rgba(10,2,32,0.9), rgba(6,6,26,0.9));
@@ -95,7 +114,7 @@
         <a href="sponsors.html">Sponsors</a>
         <a href="workshops.html">Workshops</a>
         <a href="schedule.html">Schedule</a>
-        <a href="humans.html">Humans</a>
+        <a href="humans.html" class="text-[#06b6d4] font-semibold">Humans</a>
         <a href="swags.html">Swags</a>
         <a href="prizes.html">Prizes</a>
         <a href="contact.html">Contact</a>
