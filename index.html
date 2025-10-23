@@ -174,6 +174,21 @@
         <a href="contact.html">Contact</a>
         <a class="px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm ml-2 pointer-events-none opacity-60">Registration Soon</a>
       </nav>
+      <button id="menu-btn" class="md:hidden p-2 rounded-md bg-white/5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="nav-menu" class="hidden md:hidden bg-black/60 backdrop-blur py-4">
+      <div class="px-6 flex flex-col gap-3">
+        <a href="index.html" class="block py-2 text-[#06b6d4] font-semibold">Home</a>
+        <a href="sponsors.html" class="block py-2">Sponsors</a>
+        <a href="workshops.html" class="block py-2">Workshops</a>
+        <a href="schedule.html" class="block py-2">Schedule</a>
+        <a href="humans.html" class="block py-2">Humans</a>
+        <a href="swags.html" class="block py-2">Swags</a>
+        <a href="prizes.html" class="block py-2">Prizes</a>
+        <a href="contact.html" class="block py-2">Contact</a>
+      </div>
     </div>
   </header>
 
@@ -395,6 +410,11 @@
     gsap.from(".hero h1", {opacity:0,y:-120,duration:1.3,ease:"power3.out",delay:.3});
     gsap.from(".hero .badge-wait", {opacity:0,y:-30,duration:1.1,delay:.7});
     gsap.from(".hero .btn-grad",{opacity:0,scale:.7,stagger:.18,duration:1.2,delay:.8});
+
+    // Mobile menu toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.toggle('hidden');
+    });
   </script>
 
 </body>

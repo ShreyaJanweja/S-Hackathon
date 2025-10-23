@@ -184,7 +184,7 @@
   <!-- SPEAKERS -->
   <section class="py-16 px-6 max-w-7xl mx-auto">
     <h2 class="section-heading">Meet Our Speakers</h2>
-    <div class="grid md:grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       <div class="flip-card">
         <div class="flip-inner">
           <div class="flip-front"><img src="assests/speaker2.jpg" class="rounded-2xl w-full h-72 object-cover"></div>
@@ -267,6 +267,11 @@
         btn.classList.add("active");
         tabContent.innerHTML = `<p>${content[btn.textContent]}</p>`;
       });
+    });
+
+    // Mobile menu toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.toggle('hidden');
     });
   </script>
 </body>

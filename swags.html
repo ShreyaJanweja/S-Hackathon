@@ -267,9 +267,9 @@
   <header class="fixed w-full z-40 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-2">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center">
+        <!-- <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z"/></svg>
-        </div>
+        </div> -->
         <span class="text-xl font-semibold tracking-tight">S-Hackathon</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200/90">
@@ -283,6 +283,21 @@
         <a href="contact.html">Contact</a>
         <a class="px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm ml-2 pointer-events-none opacity-60">Registration Soon</a>
       </nav>
+      <button id="menu-btn" class="md:hidden p-2 rounded-md bg-white/5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="nav-menu" class="hidden md:hidden bg-black/60 backdrop-blur py-4">
+      <div class="px-6 flex flex-col gap-3">
+        <a href="index.html" class="block py-2">Home</a>
+        <a href="sponsors.html" class="block py-2">Sponsors</a>
+        <a href="workshops.html" class="block py-2">Workshops</a>
+        <a href="schedule.html" class="block py-2">Schedule</a>
+        <a href="humans.html" class="block py-2">Humans</a>
+        <a href="swags.html" class="block py-2 text-[#06b6d4] font-semibold">Swags</a>
+        <a href="prizes.html" class="block py-2">Prizes</a>
+        <a href="contact.html" class="block py-2">Contact</a>
+      </div>
     </div>
   </header>
 
@@ -439,6 +454,11 @@
     gsap.from(".hero h1", {opacity:0,y:-120,duration:1.3,ease:"power3.out",delay:.3});
     gsap.from(".hero .badge", {opacity:0,y:-30,duration:1.1,delay:.7});
     gsap.from(".hero .btn-grad",{opacity:0,scale:.7,stagger:.18,duration:1.2,delay:.8});
+
+    // Mobile menu toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.toggle('hidden');
+    });
 
     // Swag reveal animation
     document.querySelectorAll('.swag-card').forEach(card => {
