@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>S-Hackathon 2025 | Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: white;
+      background: linear-gradient(120deg,#0a0220 0%,#1b0b29 100%);
+      --primary:#8b5cf6; --secondary:#06b6d4;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    .glow-card {
+      border: 1.5px solid rgba(139,92,246,0.20);
+      background: rgba(20,25,40,0.92);
+      border-radius: 1.25rem;
+      box-shadow: 0 0 36px 5px rgba(139,92,246,0.07);
+      transition: all 0.3s cubic-bezier(.33,.91,.59,.99);
+    }
+    .glow-card:hover {
+      transform: translateY(-6px) scale(1.035);
+      box-shadow: 0 0 48px 2px #7b50eacc, 0 0 15px 2px #06b6d4cc;
+      border-color: var(--secondary);
+    }
+    .section-heading {
+      font-size:2.6rem;
+      font-weight: 800;
+      background: linear-gradient(90deg,#8b5cf6,#06b6d4 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align:center;
+      margin-bottom:2.5rem;
+    }
+    /* Subtle floating blob bg animation */
+    .animated-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:linear-gradient(120deg,#0a0220 70%,#180935 100%);
+    }
+    .blob {
+      position:absolute;
+      border-radius:50%;
+      mix-blend-mode:screen;
+      opacity:0.26;
+      animation:float 14s infinite alternate cubic-bezier(.54,1.91,.85,1.01);
+    }
+    .blob1 { left:8vw;top:20vh;width:320px;height:250px;background:#8b5cf6;animation-delay:0s;}
+    .blob2 { right:8vw;top:44vh;width:360px;height:200px;background:#06b6d4;animation-delay:4s;}
+    .blob3 { right:24vw;bottom:4vh;width:280px;height:230px;background:#fff;opacity:0.12;animation-delay:2s;}
+    @keyframes float {
+      100%{transform:translateY(-40px) scale(1.03) rotate(-4deg);}
+      0%{transform:translateY(0) scale(1.15) rotate(2deg);}
+    }
+    .badge-wait {
+      display:inline-block;
+      font-size:1rem;
+      letter-spacing:0.035em;
+      padding:.55rem 1.5rem .5rem;
+      border-radius:999px;
+      background:linear-gradient(100deg,#8b5cf6,#06b6d4);
+      color:#191825;
+      font-weight:600;
+      box-shadow:0 2px 24px #06b6d488;
+      border:2px solid #fff2;
+      margin-bottom:1.7rem;
+      animation:pulse2 2.1s infinite;
+    }
+    @keyframes pulse2 {
+      0%,100%{box-shadow:0 0 16px #8b5cf644;}
+      60%{box-shadow:0 0 42px #06b6d488;}
+    }
+    /* Timeline */
+    .timeline-main {
+      position:relative;
+      max-width:960px;
+      margin:0 auto;
+      padding: 0 0 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap:2rem;
+    }
+    .timeline-vert {
+      position:absolute;left:50%;top: 0;transform:translateX(-50%);
+      width: 5px;height:100%;background:linear-gradient(180deg,#8b5cf6,#06b6d4);z-index:0;
+      border-radius:2px;
+    }
+    .tl-row {
+      display:flex;align-items:center;
+      position:relative;
+      min-height:84px;
+    }
+    .tl-marker {
+      position:absolute;left:50%;transform:translateX(-50%);
+      width: 25px;height: 25px;border-radius:50%;
+      background: linear-gradient(120deg,#8b5cf6,#06b6d4 90%);
+      box-shadow:0 0 0 9px #8b5cf624,0 0 0 3px #06b6d448;
+      z-index:2;border:2.5px solid #101010;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;font-weight:700;color:#fff;
+      animation:pulse1 2.2s infinite alternate cubic-bezier(.6,.5,.9,1.2);
+    }
+    @keyframes pulse1 {
+      0%{box-shadow:0 0 0 7px #06b6d4a5,0 0 0 2px #8b5cf654;}
+      100%{box-shadow:0 0 0 13px #8b5cf684,0 0 0 8px #06b6d444;}
+    }
+    .tl-row-left, .tl-row-right {
+      flex:1; min-width:180px;
+    }
+    .event-time {color:#9dd7e2;font-weight:600;margin-bottom:0.2rem;}
+    .tl-title {font-size:1.1rem;font-weight:700; color:#a782ec;}
+    .tl-desc {font-size:1.01rem;color:#cbd5e1;}
+    .btn-grad {
+      background:linear-gradient(90deg,#06b6d4,#8b5cf6);
+      color:#1b0137;font-weight:700;font-size:1.1rem;
+      padding:.9rem 2.7rem;border-radius:1.65rem;
+      margin-top:2.1rem;margin-bottom:.7rem;box-shadow:0 5px 32px #8b5cf655;
+      transition:.3s;
+      display:inline-block;
+    }
+    .btn-grad:hover {background:linear-gradient(90deg,#8b5cf6,#06b6d4);transform:scale(1.04);}
+    /* CTAs & footer */
+    .cta-bar {background:linear-gradient(90deg,#181926 80%,#14014d 120%);}
+    .footer-split {
+      max-width:1300px;
+      margin:auto;
+      color:#c1bff9;
+      padding:1.5rem 0 0.6rem;
+      display:flex;flex-wrap:wrap;
+      align-items:center;justify-content:space-between;
+      border-top:1px solid #2d2355;
+      gap:1.1rem;
+    }
+    .footer-split .links a{color:#8b5cf6;margin-right:1.5rem;font-size:1rem;transition:.25s;}
+    .footer-split .links a:hover{color:#06b6d4;}
+    .footer-split .social a{margin-left:1.2rem;color:#b2cdfc;transition:.2s;}
+    .footer-split .social a:hover{color:#06b6d4;transform:scale(1.18);}
+  </style>
+</head>
+<body class="overflow-x-hidden bg-[#0a0220]">
+
+  <!-- Fancy animated background blobs -->
+  <!-- <div class="animated-bg">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div> -->
+
+  <!-- NAVBAR -->
+  <header class="fixed w-full z-40 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <!-- <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2l2.4 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.6-2.2L12 2z"/></svg>
+        </div> -->
+        <span class="text-xl font-semibold tracking-tight">S-Hackathon</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200/90">
+        <a href="index.html" class="text-[#06b6d4] font-semibold">Home</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="workshops.html">Workshops</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="humans.html">Humans</a>
+        <a href="swags.html">Swags</a>
+        <a href="prizes.html">Prizes</a>
+        <a href="contact.html">Contact</a>
+        <a class="px-4 py-2 rounded-full bg-gradient-to-r from-[#06b6d4] to-[#8b5cf6] text-black font-semibold shadow-sm ml-2 pointer-events-none opacity-60">Registration Soon</a>
+      </nav>
+      <button id="menu-btn" class="md:hidden p-2 rounded-md bg-white/5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="nav-menu" class="hidden md:hidden bg-black/60 backdrop-blur py-4">
+      <div class="px-6 flex flex-col gap-3">
+        <a href="index.html" class="block py-2 text-[#06b6d4] font-semibold">Home</a>
+        <a href="sponsors.html" class="block py-2">Sponsors</a>
+        <a href="workshops.html" class="block py-2">Workshops</a>
+        <a href="schedule.html" class="block py-2">Schedule</a>
+        <a href="humans.html" class="block py-2">Humans</a>
+        <a href="swags.html" class="block py-2">Swags</a>
+        <a href="prizes.html" class="block py-2">Prizes</a>
+        <a href="contact.html" class="block py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10 pt-16">
+    <span class="badge-wait text-base sm:text-lg"> S-Hackathon 2025 — 16–17 November, Chitkara University, Punjab</span>
+    <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#06b6d4] to-white tracking-tight mb-5">
+      The Revolution of Ideas<br/>Starts Here.
+    </h1>
+    <p class="mt-1 text-lg text-slate-200 max-w-2xl">Build, collaborate, and shine at India’s most electrifying 24-hour hackathon.<br> Registration launching soon. Stay tuned and prepare to make history.</p>
+    <div class="mt-10 flex gap-6 justify-center">
+      <a href="#timeline" class="btn-grad">See Timeline</a>
+      <a href="#themes" class="btn-grad">Explore Themes</a>
+    </div>
+    <!-- <div class="absolute bottom-7 left-1/2 -translate-x-1/2 animate-bounce opacity-80 z-20">
+      <svg width="44" height="44" fill="none"><circle cx="22" cy="22" r="20" stroke="#8b5cf6" stroke-width="2"/><path d="M22 17v10m0 0-4-4m4 4 4-4" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/></svg>
+    </div> -->
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 max-w-6xl mx-auto px-6">
+    <h2 class="section-heading">About S-Hackathon</h2>
+    <p class="text-slate-300 text-lg leading-relaxed text-center max-w-3xl mx-auto">
+      S-Hackathon 2025 is not just another coding event; it’s a 24-hour marathon of passion, purpose, and potential. Hosted at Chitkara University, Punjab, the hackathon brings together innovators, dreamers, and doers from all corners of the country to shape the future with code. With expert mentorship, vibrant themes, and a spirit of collaboration, S-Hackathon is your launchpad to turn ideas into world-changing solutions.
+    </p>
+  </section>
+
+  <!-- EVENT HIGHLIGHTS -->
+  <section class="py-12 max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center">
+    <div class="glow-card p-8 flex flex-col items-center">
+      <svg class="mb-3" width="38" height="38" fill="none"><circle cx="19" cy="19" r="16" fill="#8b5cf6" fill-opacity=".25"/><text x="50%" y="55%" text-anchor="middle" font-size="1.2rem" fill="#8b5cf6" font-weight="bold" dy=".3em">24h</text></svg>
+      <h3 class="text-xl font-bold text-[#8b5cf6]">24 Hours</h3>
+      <p class="text-gray-300 mt-2">Non-stop collaboration & creation</p>
+    </div>
+    <div class="glow-card p-8 flex flex-col items-center">
+      <svg class="mb-3" width="38" height="38" fill="none"><circle cx="19" cy="19" r="16" fill="#06b6d4" fill-opacity=".23"/><text x="50%" y="56%" text-anchor="middle" font-size="1.2rem" fill="#06b6d4" font-weight="bold" dy=".3em">₹50K+</text></svg>
+      <h3 class="text-xl font-bold text-[#06b6d4]">₹50,000+</h3>
+      <p class="text-gray-300 mt-2">Prizes & Perks</p>
+    </div>
+    <div class="glow-card p-8 flex flex-col items-center">
+      <svg class="mb-3" width="38" height="38" fill="none"><circle cx="19" cy="19" r="16" fill="#f97316" fill-opacity=".21"/><text x="50%" y="56%" text-anchor="middle" font-size="1.2rem" fill="#f97316" font-weight="bold" dy=".3em">8</text></svg>
+      <h3 class="text-xl font-bold text-[#f97316]">8 Domains</h3>
+      <p class="text-gray-300 mt-2">Future-focused themes</p>
+    </div>
+    <div class="glow-card p-8 flex flex-col items-center">
+      <svg class="mb-3" width="38" height="38" fill="none"><circle cx="19" cy="19" r="16" fill="#6447cd" fill-opacity=".19"/><text x="50%" y="56%" text-anchor="middle" font-size="1.2rem" fill="#6447cd" font-weight="bold" dy=".3em">1</text></svg>
+      <h3 class="text-xl font-bold text-[#6447cd]">1 Goal</h3>
+      <p class="text-gray-300 mt-2">Unleash transformative ideas</p>
+    </div>
+  </section>
+
+  <!-- THEMES -->
+  <section id="themes" class="py-16 max-w-6xl mx-auto px-6">
+    <h2 class="section-heading">Hackathon Themes</h2>
+    <div class="grid md:grid-cols-4 gap-9">
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#8b5cf6] mb-3"></span>AI & Machine Learning<p class="text-gray-400 mt-1 text-sm">Build smarter with the power of AI</p></div>
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#06b6d4] mb-3"></span>Sustainability<p class="text-gray-400 mt-1 text-sm">Code for a greener planet</p></div>
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#f97316] mb-3"></span>FinTech<p class="text-gray-400 mt-1 text-sm">Re-imagine finance & payments</p></div>
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#82fcff] mb-3"></span>Healthcare Tech<p class="text-gray-400 mt-1 text-sm">Tech for better well-being</p></div>
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#C2BFED] mb-3"></span>Open Innovation<p class="text-gray-400 mt-1 text-sm">No rules — just invent</p></div>
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#B8AADD] mb-3"></span>Blockchain<p class="text-gray-400 mt-1 text-sm">Decentralize the future</p></div>
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#FFB673] mb-3"></span>CyberSecurity<p class="text-gray-400 mt-1 text-sm">Safeguard the digital world</p></div>
+      <div class="glow-card p-7 flex flex-col items-center"><span class="text-2xl text-[#A9E6EF] mb-3"></span>Smart Education<p class="text-gray-400 mt-1 text-sm">Empower learning journeys</p></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="py-24 px-3 sm:px-6">
+    <h2 class="section-heading">Event Timeline</h2>
+    <div class="timeline-main">
+      <div class="timeline-vert"></div>
+      <!-- Y: center y is time marker -->
+      <div class="tl-row mb-4">
+        <div class="tl-row-left text-right pr-6 md:pr-12">
+          <div class="event-time">9:00–10:00 AM</div>
+          <div class="tl-title">Registration</div>
+          <div class="tl-desc text-sm">Check-in, badge collection</div>
+        </div>
+        <div class="tl-marker">1</div>
+        <div class="tl-row-right pl-6 md:pl-12"></div>
+      </div>
+      <div class="tl-row mb-4">
+        <div class="tl-row-left text-right pr-6 md:pr-12">
+          <div class="event-time">10:15 AM</div>
+          <div class="tl-title">Inauguration</div>
+          <div class="tl-desc text-sm">Opening ceremony & addresses</div>
+        </div>
+        <div class="tl-marker">2</div>
+        <div class="tl-row-right pl-6 md:pl-12"></div>
+      </div>
+      <div class="tl-row mb-4">
+        <div class="tl-row-left"></div>
+        <div class="tl-marker">3</div>
+        <div class="tl-row-right pl-6 md:pl-12">
+          <div class="event-time">12:00 PM</div>
+          <div class="tl-title">Coding Begins</div>
+          <div class="tl-desc text-sm">Let the creativity flow!</div>
+        </div>
+      </div>
+      <div class="tl-row mb-4">
+        <div class="tl-row-left text-right pr-6 md:pr-12">
+          <div class="event-time">2:00–2:45 PM</div>
+          <div class="tl-title">Mentorship I</div>
+          <div class="tl-desc text-sm">Guidance from the best</div>
+        </div>
+        <div class="tl-marker">4</div>
+        <div class="tl-row-right"></div>
+      </div>
+      <div class="tl-row mb-4">
+        <div class="tl-row-left"></div>
+        <div class="tl-marker">5</div>
+        <div class="tl-row-right pl-6 md:pl-12">
+          <div class="event-time">4:30–5:30 PM</div>
+          <div class="tl-title">Round I Evaluation</div>
+          <div class="tl-desc text-sm">Project review</div>
+        </div>
+      </div>
+      <div class="tl-row mb-4">
+        <div class="tl-row-left text-right pr-6 md:pr-12">
+          <div class="event-time">Day 2, 9:00 AM</div>
+          <div class="tl-title">Final Judging</div>
+          <div class="tl-desc text-sm">Pitch and demo to jury</div>
+        </div>
+        <div class="tl-marker">6</div>
+        <div class="tl-row-right"></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-row-left"></div>
+        <div class="tl-marker">7</div>
+        <div class="tl-row-right pl-6 md:pl-12">
+          <div class="event-time">2:00 PM</div>
+          <div class="tl-title">Result Ceremony</div>
+          <div class="tl-desc text-sm">Prizes & celebrations</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="schedule.html" class="btn-grad">View Full Schedule</a>
+    </div>
+  </section>
+
+  <!-- MENTORS / NETWORKING -->
+  <section class="py-20 max-w-6xl mx-auto px-6 text-center">
+    <h2 class="section-heading">Mentorship & Networking</h2>
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="glow-card p-6 rounded-xl"><h3 class="font-semibold text-[#8b5cf6]">Dr. Anita Sharma</h3><p class="text-gray-300 text-sm">AI & ML Expert</p></div>
+      <div class="glow-card p-6 rounded-xl"><h3 class="font-semibold text-[#06b6d4]">Rahul Verma</h3><p class="text-gray-300 text-sm">Full-Stack Developer</p></div>
+      <div class="glow-card p-6 rounded-xl"><h3 class="font-semibold text-[#f97316]">Pooja Nair</h3><p class="text-gray-300 text-sm">UX Research Specialist</p></div>
+      <div class="glow-card p-6 rounded-xl"><h3 class="font-semibold text-[#6447cd]">Vikas Khanna</h3><p class="text-gray-300 text-sm">Cloud/DevOps</p></div>
+    </div>
+    <a href="humans.html" class="block mt-8 text-[#06b6d4] font-semibold">See All Mentors →</a>
+  </section>
+
+  <!-- PRIZES -->
+  <section class="py-20 max-w-6xl mx-auto px-6 text-center">
+    <h2 class="section-heading">Prizes Overview</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glow-card p-7"><h3 class="text-xl font-bold text-purple-400">1st Prize</h3><p class="text-gray-200 mt-2">₹50,000 + Trophy + Swags</p></div>
+      <div class="glow-card p-7"><h3 class="text-xl font-bold text-purple-400">2nd Prize</h3><p class="text-gray-200 mt-2">₹25,000 + Certificate + Goodies</p></div>
+      <div class="glow-card p-7"><h3 class="text-xl font-bold text-purple-400">Special Awards</h3><p class="text-gray-200 mt-2">Best Innovation & Best UI</p></div>
+    </div>
+    <div class="text-center mt-10"><a href="prizes.html" class="text-[#06b6d4] font-semibold">View All Prizes →</a></div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section class="py-20 max-w-6xl mx-auto px-6 text-center">
+    <h2 class="section-heading">Our Sponsors</h2>
+    <div class="grid md:grid-cols-4 gap-10 items-center">
+      <div class="glow-card p-6">TechCorp</div>
+      <div class="glow-card p-6">InnovateLab</div>
+      <div class="glow-card p-6">CodeMasters</div>
+      <div class="glow-card p-6">GreenTech</div>
+    </div>
+    <a href="sponsors.html" class="block mt-8 text-[#06b6d4]">See All Sponsors →</a>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="text-center py-24">
+    <h3 class="text-3xl font-bold">Ready to Spark Something New?</h3>
+    <p class="text-gray-300 mb-8 mt-3">Join us Nov 16–17 at Chitkara University, Punjab. Registration will open soon!</p>
+    <div class="flex flex-col md:flex-row gap-5 justify-center">
+      <a href="#" class="btn-grad pointer-events-none opacity-50">Registration Coming Soon</a>
+      <a href="schedule.html" class="btn-grad">Event Details</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-split">
+      <span>© 2025 S-Hackathon | Powered by Coding Ninjas, CUIET</span>
+      <span class="links">
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="#" class="pointer-events-none opacity-60">Registration Soon</a>
+        <a href="contact.html">Contact</a>
+      </span>
+      <!-- <span class="social">
+        <a href="#"><svg width="20" height="20" fill="currentColor"><circle cx="10" cy="10" r="9" stroke="#8b5cf6" stroke-width="2"/></svg></a>
+        <a href="#"><svg width="20" height="20" fill="currentColor"><rect x="3" y="3" width="14" height="14" rx="4" stroke="#06b6d4" stroke-width="2"/></svg></a>
+        <a href="#"><svg width="20" height="20" fill="currentColor"><circle cx="10" cy="10" r="9" stroke="#f97316" stroke-width="2"/></svg></a>
+      </span> -->
+    </div>
+  </footer>
+
+  <!-- GSAP Animations -->
+  <script>
+    gsap.utils.toArray("section").forEach((section, i) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 80,
+        duration: 1.1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+        },
+        delay: i*.07
+      });
+    });
+    gsap.from(".hero h1", {opacity:0,y:-120,duration:1.3,ease:"power3.out",delay:.3});
+    gsap.from(".hero .badge-wait", {opacity:0,y:-30,duration:1.1,delay:.7});
+    gsap.from(".hero .btn-grad",{opacity:0,scale:.7,stagger:.18,duration:1.2,delay:.8});
+
+    // Mobile menu toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
