@@ -143,19 +143,152 @@
     .footer-split .links a:hover{color:#06b6d4;}
     .footer-split .social a{margin-left:1.2rem;color:#b2cdfc;transition:.2s;}
     .footer-split .social a:hover{color:#06b6d4;transform:scale(1.18);}
-    /* Countdown timer styles */
-    .countdown-wrap {display:flex;justify-content:center;margin-top:1.25rem}
-    .countdown-card {display:flex;gap:1rem;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));border:1px solid rgba(139,92,246,0.09);padding:.6rem .8rem;border-radius:12px;box-shadow:0 8px 30px rgba(11,7,28,0.6);backdrop-filter: blur(6px);}
-    .cd-segment {min-width:72px;text-align:center}
-    .cd-label {font-size:.72rem;color:#b6cfe0;margin-top:8px}
-
-  /* Countdown value + entrance animation */
-  .cd-value {font-size:1.45rem;font-weight:800;background:linear-gradient(90deg,#8b5cf6,#06b6d4);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:transparent;display:block}
-  @media (max-width:640px){.cd-value{font-size:1.05rem}}
-
-  /* Entrance animation for countdown */
-  .countdown-card {opacity:0;transform:translateY(18px) scale(.995);animation:cdEnter .9s cubic-bezier(.2,.9,.3,1) forwards;animation-delay:.35s}
-  @keyframes cdEnter {from{opacity:0;transform:translateY(18px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
+     /* 3D Countdown Timer Styles */
+    .countdown-container {
+      display: flex;
+      gap: 2rem;
+      perspective: 1000px;
+      margin: 2rem 0;
+    }
+    
+    .countdown-block {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      transform-style: preserve-3d;
+      transform: translateZ(0);
+      opacity: 0;
+      animation: countdownEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .countdown-block:nth-child(1) { animation-delay: 0.2s; }
+    .countdown-block:nth-child(2) { animation-delay: 0.4s; }
+    .countdown-block:nth-child(3) { animation-delay: 0.6s; }
+    .countdown-block:nth-child(4) { animation-delay: 0.8s; }
+    
+    @keyframes countdownEnter {
+      from {
+        opacity: 0;
+        transform: translateY(30px) rotateX(30deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+      }
+    }
+    
+    .countdown-value {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: white;
+      text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+      background: linear-gradient(145deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.15));
+      border: 2px solid rgba(139, 92, 246, 0.3);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      transform-style: preserve-3d;
+      transform: translateZ(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .countdown-value:hover {
+      transform: translateZ(30px);
+      text-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+      border-color: rgba(6, 182, 212, 0.5);
+    }
+    
+    .countdown-label {
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(182, 207, 224, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    @media (max-width: 768px) {
+      .countdown-container {
+        gap: 1rem;
+      }
+      .countdown-block {
+        width: 80px;
+        height: 80px;
+      }
+      .countdown-value {
+        font-size: 2rem;
+      }
+      .countdown-label {
+        font-size: 0.8rem;
+        bottom: -25px;
+      }
+    }
+    
+    /* Timeline */
+    .timeline-main {
+      position:relative;
+      max-width:960px;
+      margin:0 auto;
+      padding: 0 0 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap:2rem;
+    }
+    .timeline-vert {
+      position:absolute;left:50%;top: 0;transform:translateX(-50%);
+      width: 5px;height:100%;background:linear-gradient(180deg,#8b5cf6,#06b6d4);z-index:0;
+      border-radius:2px;
+    }
+    .tl-row {
+      display:flex;align-items:center;
+      position:relative;
+      min-height:84px;
+    }
+    .tl-marker {
+      position:absolute;left:50%;transform:translateX(-50%);
+      width: 25px;height: 25px;border-radius:50%;
+      background: linear-gradient(120deg,#8b5cf6,#06b6d4 90%);
+      box-shadow:0 0 0 9px #8b5cf624,0 0 0 3px #06b6d448;
+      z-index:2;border:2.5px solid #101010;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;font-weight:700;color:#fff;
+      animation:pulse1 2.2s infinite alternate cubic-bezier(.6,.5,.9,1.2);
+    }
+    @keyframes pulse1 {
+      0%{box-shadow:0 0 0 7px #06b6d4a5,0 0 0 2px #8b5cf654;}
+      100%{box-shadow:0 0 0 13px #8b5cf684,0 0 0 8px #06b6d444;}
+    }
+    .tl-row-left, .tl-row-right {
+      flex:1; min-width:180px;
+    }
+    .event-time {color:#9dd7e2;font-weight:600;margin-bottom:0.2rem;}
+    .tl-title {font-size:1.1rem;font-weight:700; color:#a782ec;}
+    .tl-desc {font-size:1.01rem;color:#cbd5e1;}
+    .btn-grad {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      border-radius: 9999px;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .btn-grad:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+    }
 
   /* Sponsors carousel styles */
   /* enable smooth scrolling for anchor links */
@@ -234,36 +367,32 @@
     <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#06b6d4] to-white tracking-tight mb-5">
       The Revolution of Ideas<br/>Starts Here.
     </h1>
-    <p class="mt-1 text-lg text-slate-200 max-w-2xl">Build, collaborate, and shine at India’s most electrifying 24-hour hackathon.<br> Registration launching soon. Stay tuned and prepare to make history.</p>
-    <div class="mt-10 flex gap-6 justify-center">
-      <a href="#timeline" class="btn-grad">See Timeline</a>
+    <p class="mt-1 text-lg text-slate-200 max-w-2xl">Build, collaborate, and shine at India's most electrifying 24-hour hackathon.<br> Registration launching soon. Stay tuned and prepare to make history.</p>
+    
+    <!-- New 3D Countdown Timer -->
+    <div class="countdown-container" role="timer" aria-label="Countdown to hackathon">
+      <div class="countdown-block">
+        <div class="countdown-value" id="days">--</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-block">
+        <div class="countdown-value" id="hours">--</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-block">
+        <div class="countdown-value" id="minutes">--</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-block">
+        <div class="countdown-value" id="seconds">--</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+
+    <div class="mt-8">
       <a href="#themes" class="btn-grad">Explore Themes</a>
     </div>
-    <!-- <div class="absolute bottom-7 left-1/2 -translate-x-1/2 animate-bounce opacity-80 z-20">
-      <svg width="44" height="44" fill="none"><circle cx="22" cy="22" r="20" stroke="#8b5cf6" stroke-width="2"/><path d="M22 17v10m0 0-4-4m4 4 4-4" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/></svg>
-    </div> -->
   </section>
-  <!-- COUNTDOWN (hero) -->
-  <div class="countdown-wrap" aria-hidden="false">
-    <div class="countdown-card glow-card" role="group" aria-label="Countdown to hackathon">
-      <div class="cd-segment">
-        <div id="cd-days" class="cd-value" aria-live="polite">--</div>
-        <div class="cd-label">Days</div>
-      </div>
-      <div class="cd-segment">
-        <div id="cd-hours" class="cd-value" aria-live="polite">--</div>
-        <div class="cd-label">Hours</div>
-      </div>
-      <div class="cd-segment">
-        <div id="cd-mins" class="cd-value" aria-live="polite">--</div>
-        <div class="cd-label">Minutes</div>
-      </div>
-      <div class="cd-segment">
-        <div id="cd-secs" class="cd-value" aria-live="polite">--</div>
-        <div class="cd-label">Seconds</div>
-      </div>
-    </div>
-  </div>
 
   <!-- ABOUT -->
   <section id="about" class="py-20 max-w-6xl mx-auto px-6">
@@ -528,64 +657,101 @@
 
   <!-- GSAP Animations -->
   <script>
-    gsap.utils.toArray("section").forEach((section, i) => {
-      gsap.from(section, {
-        opacity: 0,
-        y: 80,
-        duration: 1.1,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 85%",
-        },
-        delay: i*.07
-      });
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate all sections except hero
+    gsap.utils.toArray("section:not(.h-screen)").forEach((section) => {
+      gsap.fromTo(section, 
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1, 
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none none", // Play animation once and keep it
+            once: true // Only trigger once
+          }
+        });
     });
+
+    // Hero animations
+    gsap.from(".hero h1", {opacity: 0, y: -120, duration: 1.3, ease: "power3.out", delay: 0.3});
+    gsap.from(".hero .badge-wait", {opacity: 0, y: -30, duration: 1.1, delay: 0.7});
+    gsap.from(".hero .btn-grad", {opacity: 0, scale: 0.7, duration: 1.2, delay: 0.8});
+     
     gsap.from(".hero h1", {opacity:0,y:-120,duration:1.3,ease:"power3.out",delay:.3});
     gsap.from(".hero .badge-wait", {opacity:0,y:-30,duration:1.1,delay:.7});
     gsap.from(".hero .btn-grad",{opacity:0,scale:.7,stagger:.18,duration:1.2,delay:.8});
 
-    // Mobile menu toggle
+   // Mobile menu toggle
     document.getElementById('menu-btn').addEventListener('click', () => {
       document.getElementById('nav-menu').classList.toggle('hidden');
     });
 
-    // Simple countdown timer with smooth entrance
-    (function(){
-      const target = new Date('2025-11-16T09:00:00'); // event start (local)
-
-      const daysEl = document.getElementById('cd-days');
-      const hoursEl = document.getElementById('cd-hours');
-      const minsEl = document.getElementById('cd-mins');
-      const secsEl = document.getElementById('cd-secs');
-
-      function pad(n){return String(n).padStart(2,'0');}
-
-      function tick(){
-        const now = new Date();
-        let diff = Math.floor((target - now)/1000);
-        if(diff <= 0){
-          daysEl.textContent = '00'; hoursEl.textContent = '00'; minsEl.textContent = '00'; secsEl.textContent = '00';
-          if(!document.querySelector('.event-live')){
-            const live = document.createElement('div'); live.className='event-live'; live.textContent='Event Live — join us!';
-            live.style.color = '#AEE8F0'; live.style.marginTop = '8px'; document.querySelector('.countdown-wrap').appendChild(live);
-          }
-          clearInterval(timerInterval);
-          return;
-        }
-        const days = Math.floor(diff/86400); diff%=86400;
-        const hours = Math.floor(diff/3600); diff%=3600;
-        const mins = Math.floor(diff/60); const secs = diff%60;
-        daysEl.textContent = pad(days);
-        hoursEl.textContent = pad(hours);
-        minsEl.textContent = pad(mins);
-        secsEl.textContent = pad(secs);
+    // Enhanced 3D Countdown Timer
+    const hackDate = new Date('2025-11-16T09:00:00').getTime();
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = hackDate - now;
+      
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        // Update with animation
+        updateCountdownValue('days', days);
+        updateCountdownValue('hours', hours.toString().padStart(2, '0'));
+        updateCountdownValue('minutes', minutes.toString().padStart(2, '0'));
+        updateCountdownValue('seconds', seconds.toString().padStart(2, '0'));
       }
+    }
+    
+    function updateCountdownValue(id, value) {
+      const element = document.getElementById(id);
+      if (element.textContent !== value.toString()) {
+        element.style.transform = 'translateZ(20px) scale(0.95)';
+        element.style.opacity = '0.5';
+        
+        setTimeout(() => {
+          element.textContent = value;
+          element.style.transform = 'translateZ(20px) scale(1)';
+          element.style.opacity = '1';
+        }, 100);
+      }
+    }
+    
+    // Add hover effect to countdown blocks
+    document.querySelectorAll('.countdown-block').forEach(block => {
+      block.addEventListener('mousemove', (e) => {
+        const rect = block.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const angleX = (y - centerY) / 10;
+        const angleY = (centerX - x) / 10;
+        
+        block.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      });
+      
+      block.addEventListener('mouseleave', () => {
+        block.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    });
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-      // initial tick + interval
-      tick();
-      const timerInterval = setInterval(tick,1000);
-    })();
-
+     
     // Sponsors carousel initializer
     (function(){
       const viewport = document.querySelector('.sponsors-viewport');
