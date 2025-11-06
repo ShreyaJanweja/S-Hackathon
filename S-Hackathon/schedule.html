@@ -63,10 +63,18 @@
       z-index: 2;
       transform-style: preserve-3d;
       transition: transform 0.4s, box-shadow 0.4s;
+      opacity: 0; /* start hidden so GSAP reveal is smooth */
     }
     .timeline-card:hover {
       transform: scale(1.035) rotateY(4deg);
       box-shadow: 0 6px 36px rgba(139,92,246,0.18);
+    }
+
+    /* active state for centered timeline card */
+    .timeline-card.active {
+      transform: scale(1.03) translateZ(0);
+      box-shadow: 0 12px 48px rgba(139,92,246,0.22);
+      opacity: 1;
     }
     .timeline-container {
       position: relative;
@@ -149,35 +157,143 @@
   <!-- TIMELINE (Schedule) -->
   <div class="timeline-container">
     <div class="timeline-line"></div>
+    <!-- Day 1 split into per-event cards for better scrolling/animation -->
     <div class="timeline-item">
       <div class="timeline-card">
-        <h2 class="text-2xl font-bold text-purple-400 mb-3">Day 1: 16 November 2025</h2>
-        <ul class="text-gray-200 text-base leading-relaxed space-y-1 pl-4 list-disc">
-          <li>9:00–10:00 AM: Registration (Central Lobby)</li>
-          <li>10:00–10:15 AM: Assemble at Main Auditorium</li>
-          <li>10:15 AM: Inauguration Ceremony & Lamp Lighting</li>
-          <li>10:30–10:55 AM: Welcome + Keynote by Eminent Guests</li>
-          <li>11:05 AM: Panel Discussion: Industry Experts</li>
-          <li>11:35 AM: Dignitary Felicitation</li>
-          <li>12:00 PM: Coding Marathon Kickoff</li>
-          <li>1:00–2:00 PM: Lunch (Campus Cafeteria)</li>
-          <li>2:00–2:45 PM: Mentorship Round I</li>
-          <li>4:30–5:30 PM: Evaluation Round I</li>
-          <li>7:30–8:30 PM: Dinner</li>
-          <li>9:00–10:00 PM: Mentorship Round II</li>
-        </ul>
+        <b><div class="event-day">Day 1</div></b>
+        <div class="event-time">9:00–10:00 AM</div>
+        <h3 class="tl-title">Registration</h3>
+        <p class="tl-desc">Central Lobby — Check-in & badge collection</p>
       </div>
     </div>
+
     <div class="timeline-item">
       <div class="timeline-card">
-        <h2 class="text-2xl font-bold text-teal-400 mb-3">Day 2: 17 November 2025</h2>
-        <ul class="text-gray-200 text-base leading-relaxed space-y-1 pl-4 list-disc">
-          <li>7:30–8:30 AM: Breakfast</li>
-          <li>9:00–10:00 AM: Evaluation Round II</li>
-          <li>12:00–1:00 PM: Final Judging Round</li>
-          <li>1:00–2:00 PM: Lunch</li>
-          <li>2:00–3:00 PM: Closing Ceremony & Result Announcement</li>
-        </ul>
+        <div class="event-time">10:00–10:15 AM</div>
+        <h3 class="tl-title">Assemble at Main Auditorium</h3>
+        <p class="tl-desc">Participants gather before inauguration</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">10:15 AM</div>
+        <h3 class="tl-title">Inauguration Ceremony & Lamp Lighting</h3>
+        <p class="tl-desc">Opening remarks and lamp lighting</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">10:30–10:55 AM</div>
+        <h3 class="tl-title">Welcome & Keynote</h3>
+        <p class="tl-desc">Keynote address by eminent guests</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">11:05 AM</div>
+        <h3 class="tl-title">Panel Discussion</h3>
+        <p class="tl-desc">Industry experts discuss trends & tips</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">11:35 AM</div>
+        <h3 class="tl-title">Dignitary Felicitation</h3>
+        <p class="tl-desc">Honouring special guests</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">12:00 PM</div>
+        <h3 class="tl-title">Coding Marathon Kickoff</h3>
+        <p class="tl-desc">Let the hacking begin — teams start coding</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">1:00–2:00 PM</div>
+        <h3 class="tl-title">Lunch</h3>
+        <p class="tl-desc">Campus Cafeteria — Recharge & network</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">2:00–2:45 PM</div>
+        <h3 class="tl-title">Mentorship Round I</h3>
+        <p class="tl-desc">Mentors support teams with guidance</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">4:30–5:30 PM</div>
+        <h3 class="tl-title">Evaluation Round I</h3>
+        <p class="tl-desc">Initial project reviews by judges</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">7:30–8:30 PM</div>
+        <h3 class="tl-title">Dinner</h3>
+        <p class="tl-desc">Evening meal & networking</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">9:00–10:00 PM</div>
+        <h3 class="tl-title">Mentorship Round II</h3>
+        <p class="tl-desc">Second mentorship session for teams</p>
+      </div>
+    </div>
+
+    <!-- Day 2 split into per-event cards -->
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <b><div class="event-day">Day 2</div></b>
+        <div class="event-time">7:30–8:30 AM</div>
+        <h3 class="tl-title">Breakfast</h3>
+        <p class="tl-desc">Start the day with a good meal</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">9:00–10:00 AM</div>
+        <h3 class="tl-title">Evaluation Round II</h3>
+        <p class="tl-desc">Further judging and feedback</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">12:00–1:00 PM</div>
+        <h3 class="tl-title">Final Judging Round</h3>
+        <p class="tl-desc">Top teams present to the jury</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">1:00–2:00 PM</div>
+        <h3 class="tl-title">Lunch</h3>
+        <p class="tl-desc">Final lunch before closing</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="event-time">2:00–3:00 PM</div>
+        <h3 class="tl-title">Closing Ceremony & Results</h3>
+        <p class="tl-desc">Awards, announcements & wrap-up</p>
       </div>
     </div>
   </div>
@@ -202,18 +318,38 @@
   </footer>
 
   <script>
+    // Register ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Reveal timeline cards: play on enter and keep visible (no fade-out)
+    // Cards animate in when they enter view and retain their active state.
     gsap.utils.toArray(".timeline-card").forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
+      // ensure initial state
+      gsap.set(card, { y: 120, opacity: 0 });
+
+      const anim = gsap.to(card, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: "power2.out",
+        paused: true
+      });
+
+      // Create a ScrollTrigger for each card that only plays when entering.
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 75%",
+        end: "top 35%",
+        toggleActions: "play none none none",
+        onEnter: () => {
+          anim.play();
+          card.classList.add('active');
         },
-        y: 120,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power4.out",
-        delay: i * 0.13
+        onEnterBack: () => {
+          anim.play();
+          card.classList.add('active');
+        }
+        // no onLeave/onLeaveBack handlers — cards remain visible once revealed
       });
     });
 
